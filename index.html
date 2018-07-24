@@ -152,6 +152,11 @@
 		console.log('Cookie insertada') 
 		mensaje__cookie.innerHTML = 'Cookie insertada' + '</br></br>' + 'Refresca la página para que veas'
 		avisoCookies__container.style.height = '0px'
+
+		setTimeout(function()
+		{
+			avisoCookies__container.style.display = 'none'
+		}, 1000)
 	}
 
 
