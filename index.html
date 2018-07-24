@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="description" content=""/>
+	<meta name="keywords" content=""/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+	<title>Prueba cookies</title>
+
+	<link href="https://fonts.googleapis.com/css?family=Questrial" rel="stylesheet">
+
+	<style>
+		.avisoCookies__container{
+			display: flex;
+			justify-content: space-around;
+			align-items: center;
+			flex-wrap: wrap;
+			width: 250px;
+			height: 100px;
+			border: 1px solid silver;
+			margin-left: auto;
+			margin-right: auto;
+			border-radius: 5px;
+		}
+		.avisoCookies__texto{
+			font-family: 'Questrial';
+			font-size: 14px;
+			text-align: center;
+			width: 100%;
+		}
+		.avisoCookies__botones{
+			font-family: 'Questrial';
+			font-size: 12px;
+			padding: 5px;
+			line-height: 20px;
+			border: 1px solid silver;
+			border-radius: 5px;
+			cursor: pointer;
+			transition: all, .3s;
+		}
+		.avisoCookies__botones:hover{
+			color: #fff;
+			background-color: #304ffe;
+		}
+		.avisoCookies__botones:active{
+			background-color: #8c9eff;
+		}
+		.mensaje-cookie{
+			text-align: center;
+			font-family: 'Questrial';
+			font-size: 20px;
+			color: blue;
+			font-weight: bold;
+		}
+	</style>
+
+	
+
+</head>
+<body>
+	
+	<h1>Cookies</h1>
+
+	<div id="avisoCookies__container" class="avisoCookies__container">
+		<p class="avisoCookies__texto">Mensaje con el aviso de cookies</p>
+		<p class="avisoCookies__botones" id="avisoCookies__aceptar">Aceptar</p>
+		<p class="avisoCookies__botones" id="avisoCookies__rechazar">Rechazar</p>
+	</div>
+
+
+	<p id="mensaje__cookie" class="mensaje-cookie"></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+	<script>
+
+	var mensaje__cookie = document.getElementById('mensaje__cookie')
+	var avisoCookies__container = document.getElementById('avisoCookies__container')
+	var avisoCookies__aceptar   = document.getElementById('avisoCookies__aceptar')
+	var avisoCookies__rechazar  = document.getElementById('avisoCookies__rechazar')
+
+	avisoCookies__aceptar.addEventListener('click', insertarCookie)
+	avisoCookies__rechazar.addEventListener('click', redireccionar)
+
+
+
+
+	function comprobarCookie(clave) 
+	{
+		var clave = obtenerCookie(clave)
+
+		if (clave != "") 
+		{
+		      console.log('La cookie existe') 
+		      mensaje__cookie.innerHTML = 'Ahora la cookie ya existe'
+		      avisoCookies__container.style.display = 'none'
+		}
+		else
+		{
+		      console.log('La cookie no existe') 
+		      mensaje__cookie.innerHTML = 'La cookie aún no existe'
+		}
+	}
+	comprobarCookie('usuario') 
+
+
+
+
+	function obtenerCookie(clave) 
+	{
+		var name = clave + "=";
+
+		var ca = document.cookie.split(';');
+
+		for(var i=0; i < ca.length; i++) 
+		{
+			var c = ca[i];
+
+			while (c.charAt(0)==' ') c = c.substring(1);
+
+			if(c.indexOf(name) == 0) return c.substring(name.length,c.length);
+		}
+
+		return ""
+	}
+
+
+	function insertarCookie() // AQUÍ SE EJECUTARÍA EL CÓDIGO DE ANALYTICS
+	{
+		document.cookie = "usuario = Esta es la cookie"
+		console.log('Cookie insertada') 
+		mensaje__cookie.innerHTML = 'Cookie insertada' + '</br></br>' + 'Refresca la página y el aviso desaparecerá'
+	}
+
+
+	function redireccionar()
+	{
+		location = 'http://www.google.com'
+	}
+	
+
+
+
+
+
+
+
+	
+
+		// function analytics()
+		// {
+			
+		// 	// (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		// 	// (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		// 	// m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		// 	// })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		// 	// ga('create', 'UA-40876567-1', 'cinesabc.com');
+		// 	// ga('send', 'pageview');
+		// }
+
+
+	</script>
+
+
+</body>
+</html>
